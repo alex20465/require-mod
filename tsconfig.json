@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "sourceMap": false,
+        "target": "es5"
+    },
+    "filesGlob": [
+        "test/*.ts",
+        "lib/*.ts",
+        "typings/*/*.d.ts"
+    ],
+    "files": [
+        "test/ProxyScope.ts",
+        "lib/IModule.ts",
+        "lib/ProxyScope.ts",
+        "lib/require-proxy.ts",
+        "typings/expect.js/expect.js.d.ts",
+        "typings/mocha/mocha.d.ts",
+        "typings/node/node.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}
