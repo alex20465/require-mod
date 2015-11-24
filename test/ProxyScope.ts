@@ -6,26 +6,25 @@ import expect = require("expect.js");
 
 import {ProxyScope} from "../lib/require-proxy";
 
-describe( 'requireProxy', () => {
+describe( 'requireProxy - with mock environment', () => {
 
-    var scope: ProxyScope, requireHandler;
+    var scope: ProxyScope, requireHandler, fakeModule;
 
     beforeEach( () => {
 
-        var fakeModule = {
+        fakeModule = {
             require: function( modulename ){
-                 if( requireHandler ) {
-                    return requireHandler(modulename);
-                 } else {
-                    return null;
-                 }
+                switch (modulename) {
+                    case "fs":
+                        return "filesystem";
+                    default:
+                        return null;
+                }
             },
             filename: 'foo/bar.js',
             loaded: true
         }
-
         scope = new ProxyScope(fakeModule);
-
     } );
 
 
@@ -35,25 +34,18 @@ describe( 'requireProxy', () => {
 
     it("should redirect the required modulename", () => {
 
-        scope.when(/.*?/).redirect('foo');
+        scope.when(/.*?/).redirect('fs');
 
         var requireModulename, moduleExport, failed = false;
 
-        requireHandler = ( modulename ) => {
-            requireModulename = modulename;
-
-            return "working";
-        }
-
         try {
-            moduleExport = require('any');
+            moduleExport = fakeModule.require('any');
         } catch (e) {
             failed = true;
         }
 
         expect( failed ).be( false );
-        expect( moduleExport ).to.be('working');
-        expect( requireModulename ).be('foo');
+        expect( moduleExport ).to.be("filesystem");
     });
 
     it("should have reset the registered handlers", () => {
@@ -69,4 +61,40 @@ describe( 'requireProxy', () => {
         expect( failed ).be( true );
     });
 
-} )
+    it("should use the function handler", () => {
+
+        var requireModulename, failed = false, moduleExport;
+
+        scope.when(/.*?/).use( (modulename) => {
+            requireModulename = modulename;
+            return "handler";
+        } );
+
+
+        try {
+            moduleExport = fakeModule.require('any');
+        } catch (e) {
+            failed = true;
+        }
+
+        expect( failed ).be( false );
+        expect( moduleExport ).to.be('handler');
+        expect( requireModulename ).to.be('any');
+    });
+
+    it("should redirect a requirement", () => {
+
+        var requireModulename, failed = false, moduleExport;
+
+        scope.when(/.*?/).redirect("fs");
+
+        try {
+            moduleExport = fakeModule.require('any');
+        } catch (e) {
+            failed = true;
+        }
+
+        expect( failed ).be( false );
+        expect( moduleExport ).to.be("filesystem");
+    });
+} );
