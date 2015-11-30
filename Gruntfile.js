@@ -30,6 +30,19 @@ module.exports = function (grunt) {
         ui: 'tdd'
       }
     },
+    dtsGenerator: {
+      options: {
+        name: 'require-mod',
+        main: 'require-mod/lib/ProxyScope',
+        out: './index.d.ts',
+        indent: '    ',
+        project: './',
+        exclude: [
+          '**/*.d.ts'
+        ]
+      },
+      default: {}
+    },
     watch: {
       js: {
         files: ['**/*.js', '!node_modules/**/*.js'],
@@ -45,6 +58,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-cli');
+  grunt.loadNpmTasks('dts-generator');
   grunt.registerTask('test', ['complexity', 'jshint', 'mochacli', 'watch']);
   grunt.registerTask('ci', ['complexity', 'jshint', 'mochacli']);
   grunt.registerTask('default', ['test']);

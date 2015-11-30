@@ -4,7 +4,7 @@
 
 import expect = require("expect.js");
 
-import {ProxyScope} from "../lib/require-proxy";
+import {ProxyScope} from "../lib/ProxyScope";
 
 describe( 'requireProxy - with mock environment', () => {
 
@@ -24,9 +24,10 @@ describe( 'requireProxy - with mock environment', () => {
             filename: 'foo/bar.js',
             loaded: true
         }
-        scope = new ProxyScope(fakeModule);
-    } );
 
+        scope = new ProxyScope(fakeModule);
+
+    } );
 
     afterEach( () => {
         scope.reset();

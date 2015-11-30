@@ -1,9 +1,10 @@
 {
   "name": "require-mod",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "None",
   "main": "index.js",
   "scripts": {
+    "prepublish": "tsc",
     "test": "node_modules/.bin/grunt ci"
   },
   "repository": {
@@ -20,6 +21,7 @@
   "devDependencies": {
     "mytype": "latest",
     "expect.js": "~0.3.0",
+    "dts-generator": "^1.6.2",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-watch": "~0.5.3",
     "grunt": "~0.4.1",

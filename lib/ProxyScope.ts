@@ -11,19 +11,19 @@ import assert = require("assert");
 /**
  * The ``use`` function hander for a proxy registration.
  */
-interface IRequireHandler {
+export interface IRequireHandler {
     (modulename: string): void
 }
 
 /**
  * The possible proxy scenarios.
  */
-enum SCENARIOS {REDIRECTION, HANDER, STORE}
+export enum SCENARIOS {REDIRECTION, HANDER, STORE}
 
 /**
  * Proxy registration interface.
  */
-interface IProxyRegister {
+export interface IProxyRegister {
 
     expression: RegExp;
 

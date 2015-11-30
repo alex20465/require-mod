@@ -11,9 +11,7 @@
     ],
     "files": [
         "test/ProxyScope.ts",
-        "lib/IModule.ts",
         "lib/ProxyScope.ts",
-        "lib/require-proxy.ts",
         "typings/expect.js/expect.js.d.ts",
         "typings/mocha/mocha.d.ts",
         "typings/node/node.d.ts"
