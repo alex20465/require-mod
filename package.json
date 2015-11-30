@@ -1,8 +1,8 @@
 {
   "name": "require-mod",
   "version": "0.0.1",
-  "description": "None",
-  "main": "index.js",
+  "description": "Tool to modify the require-process of a module",
+  "main": "lib/ProxyScope.js",
   "scripts": {
     "prepublish": "tsc",
     "test": "node_modules/.bin/grunt ci"
@@ -30,6 +30,7 @@
     "grunt-cli": "~0.1.9"
   },
   "typescript": {
+    "definition": "index.d.ts",
     "dependencies": {
       "node": "latest",
       "expect.js": "latest",
