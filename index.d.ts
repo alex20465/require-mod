@@ -118,6 +118,12 @@ declare module 'require-mod/lib/ProxyScope' {
          * Remove all define registered handlers.
          */
         reset(): void;
+        /**
+         * Pass the requirement to the origin handler.
+         * @param  {string} modulename
+         * @return {any}
+         */
+        require(modulename: string): any;
     }
 
 }

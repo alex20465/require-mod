@@ -1,6 +1,6 @@
 {
   "name": "require-mod",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tool to modify the require-process of a module",
   "main": "lib/ProxyScope.js",
   "scripts": {

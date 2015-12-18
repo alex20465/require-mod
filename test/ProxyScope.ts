@@ -49,6 +49,16 @@ describe( 'requireProxy - with mock environment', () => {
         expect( moduleExport ).to.be("filesystem");
     });
 
+    it("should require the origin handler", () => {
+        scope.when(/.*?/).use( (modulename) => {
+            return "handler";
+        } );
+
+        var fs = scope.require('fs');
+
+        expect(fs).to.be("filesystem");
+    });
+
     it("should have reset the registered handlers", () => {
 
         var requireModulename, failed = false;

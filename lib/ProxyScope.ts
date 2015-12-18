@@ -204,4 +204,13 @@ export class ProxyScope {
     reset () {
         this.registry = [];
     }
+
+    /**
+     * Pass the requirement to the origin handler.
+     * @param  {string} modulename
+     * @return {any}
+     */
+    require( modulename: string ): any {
+        return this.requireOrigin.call(this.module, modulename);
+    }
 }
