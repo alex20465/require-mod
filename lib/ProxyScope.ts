@@ -74,8 +74,8 @@ export class ProxyScope {
     constructor( _module: any ) {
 
         try {
-            assert.ok( (<IModule>_module).loaded );
-            assert.ok( (<IModule>_module).filename );
+            assert.notEqual( (<IModule>_module).loaded, undefined);
+            assert.notEqual( (<IModule>_module).filename, undefined);
         } catch(e) {
             throw new Error("unhandled module object");
         }

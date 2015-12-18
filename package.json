@@ -4,7 +4,6 @@
   "description": "Tool to modify the require-process of a module",
   "main": "lib/ProxyScope.js",
   "scripts": {
-    "prepublish": "tsc",
     "test": "node_modules/.bin/grunt ci"
   },
   "repository": {
